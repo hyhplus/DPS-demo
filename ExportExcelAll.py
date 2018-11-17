@@ -3,7 +3,7 @@
 
 import pymysql
 import xlwt                                 # excel文件模块
-# import datetime
+import time
 
 
 def export(table_name, files, search_sql):
@@ -38,12 +38,17 @@ def export(table_name, files, search_sql):
                 text = ' '
             sheet.write(row, col, text)
 
-    book.save('files/%s2.xls' % table_name)  # 保存为excel文件
+    time1 = time.time()
+    print(time1)
+    current_time = time.strftime('%Y-%m-%d#%H.%M.%S', time.localtime(time.time()))
+    print(current_time)
+
+    book.save('D:/%s_%s.xls' % (table_name, current_time))  # 保存为excel文件
 
 
 if __name__ == '__main__':
 
     files_ = ['生产线名称', '工位',  '产线状态', '停线时刻', '停线时间（秒）', '停线次数']
     searchSQL = 'select pName, workNumber, status, stopTime, timeCount, stopCount from line_stop;'
-    export('line_stop', files_, searchSQL)
+    export('生产线停线状况', files_, searchSQL)
 
