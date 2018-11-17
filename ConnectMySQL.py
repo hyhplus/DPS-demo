@@ -4,10 +4,13 @@
 import pymysql
 from utils import sql
 
-# MySQL数据库连接，游标获取
+# MySQL数据库连接
 db = pymysql.connect('localhost', 'root', '123456', 'dps_demo', charset='utf8')
+
+# 获取游标
 cursor = db.cursor()
 
+# 事务处理
 try:
     cursor.execute(sql.drop_exit_line)
     cursor.execute(sql.create_table_line_stop)

@@ -38,6 +38,7 @@ def export(table_name, files, search_sql):
                 text = ' '
             sheet.write(row, col, text)
 
+    # 记录导出表格时间，区别表格，防止旧表格被新表格覆盖
     time1 = time.time()
     print(time1)
     current_time = time.strftime('%Y-%m-%d#%H.%M.%S', time.localtime(time.time()))

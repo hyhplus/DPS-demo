@@ -3,7 +3,6 @@
 
 import pymysql
 import xlwt                                 # excel文件模块
-# import datetime
 
 
 def export(table_name, files):
