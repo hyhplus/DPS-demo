@@ -56,6 +56,6 @@ if __name__ == '__main__':
     searchSQL = 'select pName, workNumber, status, stopTime, timeCount, stopCount from line_stop;'
     export('生产线停线状况', files_, searchSQL)
 
-    files_1= ['生产线名称', '工位No', '停线时刻', '停线时间（秒）']
+    files_1 = ['生产线名称', '工位No', '停线时刻', '停线时间（秒）']
     searchSQL1 = 'select pName, workNumber, stopTime, timeCount from line_stop where status like "%延迟%" '
     export('作业状况', files_1, searchSQL1)
