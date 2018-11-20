@@ -9,9 +9,12 @@ import time
 def export(table_name, files, search_sql):
 
     db = pymysql.connect('localhost', 'root', '123456', 'dps_demo', charset='utf8')
-    cursor = db.cursor()
+    cursor = db.cursor()                    # 获取游标
 
-    cursor.execute(search_sql)
+    cursor.execute(search_sql)              # 执行SQL
+
+    cursor.close()                          # 游标关闭
+    db.close()                              # 连接关闭
 
     # files = [file[0] for file in cursor.description]
     all_data = cursor.fetchall()            # 所有数据
@@ -24,7 +27,7 @@ def export(table_name, files, search_sql):
         sheet.write(0, col, file)
 
     # row = 1
-    # for data in all_data:                 # 写数据(数据表的记录)
+    # for data in all_data:                 # 写数据(数据表的记录)，不能写时间格式
     #     for col, file in enumerate(str(data)):
     #         sheet.write(row, col, file)
     #     row += 1
@@ -53,3 +56,6 @@ if __name__ == '__main__':
     searchSQL = 'select pName, workNumber, status, stopTime, timeCount, stopCount from line_stop;'
     export('生产线停线状况', files_, searchSQL)
 
+    files_1= ['生产线名称', '工位No', '停线时刻', '停线时间（秒）']
+    searchSQL1 = 'select pName, workNumber, stopTime, timeCount from line_stop where status like "%延迟%" '
+    export('作业状况', files_1, searchSQL1)

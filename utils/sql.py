@@ -50,7 +50,7 @@ INSERT INTO line_stop(pName, workNumber, status, stopTime) values('H1', 'NO1', '
 """
 
 
-# 创建作业状况表
+# 创建作业状况表，这个可以不用创建
 create_table_work = """
 CREATE TABLE work(
     delay varchar(50),
